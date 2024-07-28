@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Basic CSS for styling */
+        body {
+            background-image: url("bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.6); /* Transparent background */
+        }
+
+        h1, h2 {
+            color: white;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: .3rem;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 50px; /* Adjust the width as needed */
+            height: auto;
+            margin-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            background: transparent;
+            color: white;
+            font-size: 16px;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #007bff; /* New blue color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 0.3rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        input[type="submit"]:hover {
+            transition: all 0.3s ease-in;
+            background-color: #0056b3; /* Slightly darker blue shade */
+        }
+
+        .error {
+            color: #ff6565;
+            font-size: 0.9em;
+            margin-top: -10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="C:\Users\antha\OneDrive\Desktop\foss hack\static\images\logo.jpeg" alt="Logo"> <!-- Update the src attribute with your logo path -->
+        <h1 id="headline">CYPHERS UNITED</h1>
+    </div>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <input type="text" id="signupUsername" placeholder="Username" required>
+            <div id="usernameError" class="error"></div>
+            <input type="text" id="signupmail" placeholder="Email" required>
+            <div id="mailError" class="error"></div>
+            <input type="password" id="signupPassword" placeholder="Password" required>
+            <div id="passwordError" class="error"></div>
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+
+    <script>
+        // Function to save user details to local storage
+        function saveUserDetails(username, mail, password) {
+            var userDetails = {
+                username: username,
+                mail: mail,
+                password: password
+            };
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+        }
+
+        // Function to validate username
+        function validateUsername(username) {
+            var usernamePattern = /^[a-zA-Z0-9_@]+$/;
+            return usernamePattern.test(username);
+        }
+
+        // Function to validate email
+        function validateEmail(mail) {
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            return emailPattern.test(mail);
+        }
+
+        // Function to validate password
+        function validatePassword(password) {
+            return password.length >= 8;
+        }
+
+        // Function to handle sign-up form submission
+        document.getElementById('signupForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent form submission
+            var username = document.getElementById('signupUsername').value;
+            var mail = document.getElementById('signupmail').value;
+            var password = document.getElementById('signupPassword').value;
+            
+            var isValid = true;
+
+            // Clear previous error messages
+            document.getElementById('usernameError').textContent = '';
+            document.getElementById('mailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+
+            // Validate username
+            if (!validateUsername(username)) {
+                document.getElementById('usernameError').textContent = 'Username should not contain spaces or special characters except underscore and @.';
+                isValid = false;
+            }
+
+            // Validate email
+            if (!validateEmail(mail)) {
+                document.getElementById('mailError').textContent = 'Email should be a valid @gmail.com address.';
+                isValid = false;
+            }
+
+            // Validate password
+            if (!validatePassword(password)) {
+                document.getElementById('passwordError').textContent = 'Password should have a minimum of 8 characters.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                saveUserDetails(username, mail, password);
+                alert('Sign up successful! Please login.'); // For demonstration
+                window.location.href = 'website.html'; // Redirect to login page
+            }
+        };
+    </script>
+</body>
+</html>

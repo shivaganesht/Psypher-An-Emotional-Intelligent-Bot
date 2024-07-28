@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgot Password</title>
+  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <section>
+    <div class="login-box">
+      <h2>Forgot Password</h2>
+      <form id="forgetPasswordForm">
+        <div class="input-box">
+          <input type="email" id="email" required>
+          <label>Email</label>
+          <div class="icon"><i class="fa fa-envelope"></i></div>
+        </div>
+        <button type="submit">Send Reset Link</button>
+        <div class="register-link">
+          <p>Remembered your password? <a href="index.html">Login</a></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('forgetPasswordForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      let email = document.getElementById('email').value;
+      let emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+      if (!emailRegex.test(email)) {
+        alert('Email must end with @gmail.com');
+        return;
+      }
+
+      alert('Password reset link sent to your email!');
+      // Here you can handle the form submission to send the reset link
+      // this.submit();
+    });
+  </script>
+</body>
+</html>

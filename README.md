@@ -5,7 +5,7 @@ Psypher is a chatbot designed to provide emotional support and mental health inf
 # Technical Overview:
 
 ## Data Foundation:
-Psypher learns from a structured JSON file (intents.json) containing various conversational patterns (user inputs) tagged with their corresponding intent (e.g., 'greeting', 'sad', 'stressed', 'fact-1', etc.).
+Psypher learns from a structured JSON file (intents.json) containing various conversational patterns (user inputs) tagged with their corresponding intent (e.g., 'greeting', 'sad', 'stressed', 'fact-1', 'fact-2' etc.).
 The intents are then paired with suitable responses that the chatbot can use.
 
 ## Preprocessing:
